@@ -1,8 +1,9 @@
-#-------------------- Caminhos --------------------#
+from pathlib import Path
 
-CAMINHO_MODELO = "C:\\Users\\igorg\\Downloads\\hand_landmarker.task"
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-CAMINHO_CSV = 'C:\\Users\\igorg\\Documents\\Programação\\visao-computacional\\data\\raw\\dataset1.csv'
+CAMINHO_MODELO = BASE_DIR / "model" / "hand_landmarker.task"
+CAMINHO_CSV = BASE_DIR / "data" / "raw" / "dataset1.csv"
 
 #-------------------- Pontos da mão --------------------#
 

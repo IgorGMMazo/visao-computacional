@@ -1,6 +1,5 @@
 import cv2  
 
-
 def iniciar_camera(index=0, largura=640, altura=480):
     camera = cv2.VideoCapture(index)
 
@@ -19,3 +18,6 @@ def ler_frame(camera):
     
     return frame
 
+def fechar_camera(camera):
+    camera.release()
+    cv2.destroyAllWindows()
