@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from classification_report import gerar_classifiacao_reporte, gerar_matriz_confusao
 import joblib
-from config import CAMINHO_DATASET, CAMINHO_MODELO_SALVO
+from core.config import CAMINHO_DATASET, CAMINHO_MODELO_SALVO
 
 dataset = pd.read_csv(CAMINHO_DATASET)
 

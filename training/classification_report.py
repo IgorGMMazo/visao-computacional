@@ -2,7 +2,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
-from config import CAMINHO_METRICAS, CAMINHO_METRICAS_MC
+from core.config import CAMINHO_METRICAS, CAMINHO_METRICAS_MC
 
 def gerar_classifiacao_reporte(y_test, pred):
 
