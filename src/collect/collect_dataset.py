@@ -2,12 +2,12 @@
 import cv2
 import time
 import mediapipe as mp
-from core.treat_key import tratar_tecla
-from core.hand_detection import detectar_mao, extrair_mao_e_caracteristicas
-from core.vision_utils import formata_frame, desenhar_mao, escrever_salvo, escrever_texto
-from core.camera import iniciar_camera, ler_frame, fechar_camera
-from core.config import CAMINHO_MODELO, CAMINHO_CSV, CLASSES_GESTOS, CONEXOES_MAO
-from core.functions import criar_dataset_se_nao_existir, normalizar_pontos_mao, salvar_amostra
+from src.core.treat_key import tratar_tecla
+from src.core.hand_detection import detectar_mao, extrair_mao_e_caracteristicas
+from src.core.vision_utils import formata_frame, desenhar_mao, escrever_salvo, escrever_texto
+from src.core.camera import iniciar_camera, ler_frame, fechar_camera
+from src.core.config import CAMINHO_MODELO, CAMINHO_CSV, CLASSES_GESTOS, CONEXOES_MAO
+from src.core.functions import criar_dataset_se_nao_existir, normalizar_pontos_mao
 
 BaseOptions = mp.tasks.BaseOptions
 HandLandMarker = mp.tasks.vision.HandLandmarker
@@ -51,7 +51,7 @@ with HandLandMarker.create_from_options(configuracoes) as tag:
 
         cv2.imshow("Hand Landmarker", framef)
 
-        continuar, last_time, last_saved,  = tratar_tecla(CLASSES_GESTOS, caracteristicas, CAMINHO_CSV, last_time, last_saved, framef, now)
+        continuar, last_time, last_saved,  = tratar_tecla(CLASSES_GESTOS, caracteristicas, CAMINHO_CSV, last_time, last_saved, now)
 
         if not continuar:
             break

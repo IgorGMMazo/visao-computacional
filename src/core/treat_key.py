@@ -1,5 +1,5 @@
 import cv2
-from core.functions import salvar_amostra
+from src.core.functions import salvar_amostra
 
 def tratar_tecla(gestos, caracteristicas, CAMINHO_CSV, last_time, last_saved, now):
         key = cv2.waitKey(1) & 0xFF
