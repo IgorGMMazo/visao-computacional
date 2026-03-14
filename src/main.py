@@ -20,11 +20,11 @@ def main():
 
     configuracoes = HandLandmarkerOptions(
         base_options=BaseOptions(model_asset_path=str(CAMINHO_MODELO)),
-        num_hands=1,
+        num_hands=4,
         running_mode=VisionRunningMode.VIDEO
     )
 
-    camera = iniciar_camera(0, 640, 480)
+    camera = iniciar_camera(0, 1280, 720)
 
     last_saved = ""
     last_time = 0

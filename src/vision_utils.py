@@ -42,19 +42,35 @@ def escrever_salvo(last_time, last_saved, framef):
                 (10, 70),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.8,
-                (0, 255, 255),
+                (0, 255, 0),
                 2
             )
         return framef, now
 
 def escrever_texto(frame, text):
+
+    x, y = 10, 30
+
+    # borda preta
     cv2.putText(
         frame,
         text,
-        (10, 30),
+        (x, y),
         cv2.FONT_HERSHEY_SIMPLEX,
-        0.6,
+        1,
+        (0, 0, 0),
+        4
+    )
+
+    # texto branco
+    cv2.putText(
+        frame,
+        text,
+        (x, y),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1,
         (255, 255, 255),
         2
     )
+
     return frame

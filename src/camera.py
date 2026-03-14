@@ -1,4 +1,5 @@
-import cv2  
+import cv2
+
 
 def iniciar_camera(index=0, largura=640, altura=480):
     camera = cv2.VideoCapture(index)
