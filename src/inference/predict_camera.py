@@ -11,6 +11,8 @@ from src.core.vision_utils import formata_frame, desenhar_mao, escrever_texto
 from src.core.camera import iniciar_camera, ler_frame, fechar_camera
 from src.core.config import CAMINHO_MODELO, CONEXOES_MAO, CAMINHO_MODELO_SALVO
 from src.core.functions import normalizar_pontos_mao
+from src.actions.interaction_manager import InteractionManager
+from src.render.draw_block import desenhar_blocos
 
 BaseOptions = mp.tasks.BaseOptions
 HandLandMarker = mp.tasks.vision.HandLandmarker
@@ -29,6 +31,8 @@ configuracoes = HandLandmarkerOptions(
 
 camera = iniciar_camera(0, 1280, 720)
 
+manager = InteractionManager()
+
 with HandLandMarker.create_from_options(configuracoes) as tag:
     while True:
     
@@ -46,8 +50,24 @@ with HandLandMarker.create_from_options(configuracoes) as tag:
             X = pd.DataFrame([caracteristicas])
             predicao = modelo.predict(X)[0]
             text = f"Predict: {predicao}"
+
+            altura, largura, _ = framef.shape
+
+            indicador_tip = mao[8]
+            x_indicador = int(indicador_tip.x * largura)
+            y_indicador = int(indicador_tip.y * altura)
+            
+            if predicao == "indicador":
+                manager.criar_bloco(x_indicador, y_indicador)
+            elif predicao == "indicador-medio":
+                manager.remover_bloco_proximo(x_indicador, y_indicador)
+
+            cv2.circle(framef, (x_indicador, y_indicador), 10, (0, 255, 0), -1)
+
         else:
             text = "no detection"
+
+        framef = desenhar_blocos(framef, manager.blocos)
 
         framef = desenhar_mao(framef, mao, CONEXOES_MAO)
 
